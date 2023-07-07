@@ -1,0 +1,14 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+#canvas1{
+    display: none;
+}
+#videoCam {
+    display: none;
+}
+#canvas2{
+    width:  100vw;
+    image-rendering: crisp-edges;
+}
