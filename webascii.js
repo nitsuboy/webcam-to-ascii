@@ -3,7 +3,9 @@ const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 const canvas2 = document.getElementById("canvas2");
 const ctx2 = canvas2.getContext("2d");
-const gradient = "@%#+=*-:.________".replaceAll('_', '\u00A0')
+const gradient = "@%#+=*-:._____".replaceAll('_', '\u00A0')
+// For the reverse mode
+//const gradient = "@%#+=*-:._____".split("").reverse().join("").replaceAll('_', '\u00A0')
 
 const w = 80
 const h = w*.67
@@ -37,6 +39,7 @@ function draw() {
                 const g = data[pi + 1]
                 const b = data[pi + 2]
                 const avg = (r+g+b)/3
+                // For the rainbow mode
                 //ctx2.fillStyle = "hsl("+Math.floor(((i / w) * 360)+counter)+", 100%, 50%)";
                 ctx2.font = "110px Comic Sans MS";
                 ctx2.fillText(get(avg), i*m, j*m);
