@@ -1,12 +1,31 @@
 <html>
 <head>
    <title>cam to ascii</title>
-   <link rel="stylesheet" href="index.css">
+   <link rel="stylesheet" href="css/webascii.css">
 </head>
 <body>
+   <label id="p">press P to print</label>
+   <div>
+      <div class="wswitch">
+         <label>light / dark</label>
+         <label class="switch" id="bright">
+            <input type="checkbox">
+            <span class="slider round"></span>
+         </label>
+      </div>
+      <div  class="wswitch">
+         <label>normal / rainbow</label>
+         <label class="switch" id="rainbow">
+            <input type="checkbox">
+            <span class="slider round"></span>
+         </label>
+      </div>
+   </div>
+   
    <video id="videoCam"></video>
    <canvas id="canvas1"></canvas>
    <canvas id="canvas2"></canvas>
-   <script src="webascii.js"></script>
+   <img id="ii" src=""></img>
+   <script src="js/webascii.js"></script>
 </body>
 </html>

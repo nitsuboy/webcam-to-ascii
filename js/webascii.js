@@ -1,9 +1,12 @@
-var video = document.getElementById('videoCam');
+const video = document.getElementById('videoCam');
+const a = document.getElementById("ii");
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 const canvas2 = document.getElementById("canvas2");
 const ctx2 = canvas2.getContext("2d");
-const gradient = "@%#+=*-:._____".replaceAll('_', '\u00A0')
+let gradient = "@%#+=*-:._____".replaceAll('_', '\u00A0')
+let rain = false
+let mode = "black"
 // For the reverse mode
 //const gradient = "@%#+=*-:._____".split("").reverse().join("").replaceAll('_', '\u00A0')
 
@@ -11,7 +14,7 @@ const w = 80
 const h = w*.67
 const m = 100
 
-var counter = 0
+let counter = 0
 
 navigator.mediaDevices.getUserMedia({
    video: true
@@ -39,8 +42,12 @@ function draw() {
                 const g = data[pi + 1]
                 const b = data[pi + 2]
                 const avg = (r+g+b)/3
-                // For the rainbow mode
-                //ctx2.fillStyle = "hsl("+Math.floor(((i / w) * 360)+counter)+", 100%, 50%)";
+                if(rain){
+                    ctx2.fillStyle = "hsl("+Math.floor(((i / w) * 360)+counter)+", 100%, 50%)";
+                }
+                else{
+                    ctx2.fillStyle = mode;
+                }
                 ctx2.font = "110px Comic Sans MS";
                 ctx2.fillText(get(avg), i*m, j*m);
             }
@@ -49,6 +56,40 @@ function draw() {
         if(counter  > 360) counter = 0
     }, 10);
 }
+
+window.onkeydown = e => {
+    if(e.key == 'p'){
+        var img = canvas2.toDataURL("image/png");
+        a.style.display = "block"
+        a.src = img
+    }
+}
+
+var bright_switch = document.getElementById('bright');
+var r_switch = document.getElementById('rainbow');
+
+bright_switch.addEventListener('change',(e) => {
+    if(e.target.checked == true){
+        gradient = "@%#+=*-:._____".split("").reverse().join("").replaceAll('_', '\u00A0')
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        mode = "white"
+    }else{
+        gradient = "@%#+=*-:._____".replaceAll('_', '\u00A0')
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        mode = "black"
+    }
+})
+
+r_switch.addEventListener('change',(e) => {
+    if(e.target.checked == true){
+        rain = true
+    }else{
+        rain = false
+    }
+})
+
 
 canvas2.height = m*h
 canvas2.width = m*w
