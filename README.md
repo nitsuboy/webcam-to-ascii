@@ -7,5 +7,3 @@ ASCII webcam made with javascript
 
 ![normal mode](image.png)
 ![reverse rainbow mode](image-1.png)
-
-live demo [here](https://nitsuboy.github.io/pages/webascii.html)
